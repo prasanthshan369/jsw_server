@@ -123,7 +123,7 @@ const GetEmailAlerts=(req,res)=>{
 }
 const GetDeviceSettings=(req,res)=>{
     // sql="select jf.device_id,jf.factor,jf.Offset,jd.location_type,jd.location_id,jd.location_name,jf.threshold,jf.status1  from jsw_factor as jf inner join jsw_devices as jd where jf.device_id = jd.device_id"
-    sql="SELECT jf.device_id,jf.factor,jf.Offset,jd.location_name,jf.threshold,jf.status1,CASE WHEN jd.location_type = 1 THEN 'High' WHEN jd.location_type = 2 THEN 'Medium' WHEN jd.location_type = 3 THEN 'Low' ELSE 'Unknown'END AS location_type FROM jsw_factor AS jf INNER JOIN jsw_devices AS jd ON jf.device_id = jd.device_id"
+    sql="SELECT jf.device_id,jf.factor,jf.Offset,jd.location_name,jf.threshold,jf.status1,jf.status2,CASE WHEN jd.location_type = 1 THEN 'High' WHEN jd.location_type = 2 THEN 'Medium' WHEN jd.location_type = 3 THEN 'Low' ELSE 'Unknown'END AS location_type FROM jsw_factor AS jf INNER JOIN jsw_devices AS jd ON jf.device_id = jd.device_id"
     db.query(sql,(err,result)=>{
         if(err)res.json(err)
         res.json(result)
